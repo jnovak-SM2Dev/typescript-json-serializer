@@ -10,6 +10,7 @@ export class JsonSerializerOptions {
     };
     additionalPropertiesPolicy: Policy = 'remove';
     formatPropertyName?: FormatPropertyNameProto;
+    usePostName = false;
 }
 
 export interface NullishPolicy {

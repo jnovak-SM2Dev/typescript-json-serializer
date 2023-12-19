@@ -21,12 +21,14 @@ export interface JsonPropertiesMetadata {
 export interface JsonPropertyMetadata extends JsonPropertyBaseMetadata {
     isNameOverridden?: boolean;
     name: string | Array<string>;
+    postName?: string;
     type?: Function;
     predicate?: PredicateProto;
 }
 
 export interface JsonPropertyOptions extends JsonPropertyBaseMetadata {
     name?: string | Array<string>;
+    postName?: string;
     type?: Function | PredicateProto;
 }
 
@@ -111,6 +113,7 @@ const buildJsonPropertyMetadata = (
 
         if (options.name) {
             metadata.name = options.name;
+            metadata.postName = options.postName;
             metadata.isNameOverridden = true;
         }
 

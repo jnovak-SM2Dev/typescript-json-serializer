@@ -261,15 +261,17 @@ export class JsonSerializer {
                     this.checkRequiredProperty(metadata, instance, key, property, instance);
 
                     if (this.isAllowedProperty(key, property)) {
-                        if (
-                            !metadata.isNameOverridden &&
-                            this.options.formatPropertyName !== undefined
-                        ) {
-                            const name = this.options.formatPropertyName(metadata.name);
-                            json[name] = property;
-                        } else {
-                            json[metadata.name] = property;
+                        let name = metadata.name;
+
+                        if (this.options.usePostName === true && metadata.postName !== undefined) {
+                            name = metadata.postName;
                         }
+
+                        if (this.options.formatPropertyName !== undefined) {
+                            name = this.options.formatPropertyName(metadata.name);
+                        }
+
+                        json[name] = property;
                     }
                 }
             } else {
